@@ -1,0 +1,1 @@
+const mongoose=require("mongoose");module.exports=mongoose.model("Event",new mongoose.Schema({title:String,description:String,category:String,date:Date,venue:{type:mongoose.Schema.Types.ObjectId,ref:"Venue"},capacity:Number,status:{type:String,default:"Draft"},createdBy:mongoose.Schema.Types.ObjectId},{timestamps:true}));

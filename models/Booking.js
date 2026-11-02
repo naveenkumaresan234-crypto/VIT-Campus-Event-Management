@@ -1,0 +1,1 @@
+const mongoose=require("mongoose");module.exports=mongoose.model("Booking",new mongoose.Schema({user:mongoose.Schema.Types.ObjectId,venue:mongoose.Schema.Types.ObjectId,eventTitle:String,date:Date,startTime:String,endTime:String,attendees:Number,purpose:String,status:{type:String,default:"Pending"}},{timestamps:true}));

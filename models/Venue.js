@@ -1,0 +1,1 @@
+const mongoose=require("mongoose");module.exports=mongoose.model("Venue",new mongoose.Schema({name:{type:String,unique:true},location:String,capacity:Number,facilities:[String],isActive:{type:Boolean,default:true}},{timestamps:true}));

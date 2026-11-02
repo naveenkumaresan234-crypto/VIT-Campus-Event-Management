@@ -1,0 +1,3 @@
+require("dotenv").config();const mongoose=require("mongoose"),bcrypt=require("bcryptjs");
+const User=require("./models/User");
+(async()=>{try{await mongoose.connect(process.env.MONGODB_URI||"mongodb://127.0.0.1:27017/vit_campus_events");let email=(process.env.ADMIN_EMAIL||"admin@vit.local").toLowerCase(),password=process.env.ADMIN_PASSWORD||"ChangeMe@123";await User.findOneAndUpdate({email},{$set:{name:process.env.ADMIN_NAME||"VIT Campus Admin",passwordHash:await bcrypt.hash(password,12),role:"admin"}}, {upsert:true,new:true});console.log("Admin account seeded:",email)}catch(e){console.error(e.message);process.exitCode=1}finally{await mongoose.disconnect()}})();

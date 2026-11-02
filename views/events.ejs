@@ -1,0 +1,70 @@
+
+<%- include("partials/head", {title: "Explore Events"}) %>
+
+<div class="page-head">
+  <div>
+    <div class="eyebrow">CAMPUS CALENDAR</div>
+    <h1 class="h2 fw-bold">Explore Events</h1>
+    <p class="text-muted">
+      Find workshops, fests, competitions and student activities.
+    </p>
+  </div>
+</div>
+
+<div class="row g-3">
+
+  <% events.forEach(e => { %>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card event-card h-100">
+
+        <div class="card-body">
+
+          <span class="badge text-bg-primary mb-3">
+            <%= e.category %>
+          </span>
+
+          <h3 class="h5 fw-bold">
+            <%= e.title %>
+          </h3>
+
+          <p class="small text-muted">
+            <%= date(e.date) %>
+          </p>
+
+          <p>
+            <%= e.description.slice(0, 140) %>
+          </p>
+
+          <p class="small text-muted">
+            <%= e.venue ? e.venue.name : "Venue TBA" %>
+            · Capacity <%= e.capacity %>
+          </p>
+
+          <a class="btn btn-outline-primary mt-auto"
+             href="/events/<%= e._id %>">
+            View Event
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  <% }) %>
+
+  <% if (!events.length) { %>
+
+    <div class="col-12">
+      <div class="empty">
+        <h4>No published events available right now.</h4>
+        <p class="text-muted">
+          Please check back later for upcoming VIT campus events.
+        </p>
+      </div>
+    </div>
+
+  <% } %>
+
+</div>
+
+<%- include("partials/foot") %>

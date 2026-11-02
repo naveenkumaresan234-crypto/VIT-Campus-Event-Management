@@ -1,0 +1,1 @@
+const mongoose=require("mongoose");module.exports=mongoose.model("Registration",new mongoose.Schema({user:mongoose.Schema.Types.ObjectId,event:mongoose.Schema.Types.ObjectId,status:{type:String,default:"Registered"}},{timestamps:true}));

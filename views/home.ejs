@@ -1,0 +1,95 @@
+
+<%- include("partials/head", {title: "VIT Campus Events"}) %>
+
+<section class="hero rounded-4 p-4 p-md-5 mb-5">
+
+  <div class="col-lg-9">
+
+    <!-- VIT LOGO -->
+    <div class="mb-4">
+      <img src="https://vit.ac.in/conference/MAGX26/logos/logo.png" alt="VIT Vellore Logo" height="150" width="350">
+    </div>
+
+    <span class="badge bg-warning text-dark mb-3">
+      VIT VELLORE · CAMPUS LIFE
+    </span>
+
+    <h1 class="display-4 fw-bold">
+      Your campus. Your events. Your community.
+    </h1>
+
+    <p class="lead my-3">
+      Discover campus programmes, register for events and
+      request VIT venues through one organised student portal.
+    </p>
+
+    <a href="/events" class="btn btn-light btn-lg me-2">
+      Explore events
+    </a>
+
+    <% if (!user) { %>
+      <a href="/register" class="btn btn-outline-light btn-lg">
+        Join the community
+      </a>
+    <% } %>
+
+  </div>
+</section>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div>
+    <div class="eyebrow">WHAT'S HAPPENING</div>
+    <h2 class="h3 fw-bold">Upcoming events</h2>
+  </div>
+
+  <a href="/events">View all →</a>
+</div>
+
+<div class="row g-4">
+
+  <% if (!events.length) { %>
+    <div class="col-12">
+      <div class="empty">
+        No published events yet. Check back soon.
+      </div>
+    </div>
+  <% } %>
+
+  <% events.forEach(e => { %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card event-card h-100">
+        <div class="card-body">
+
+          <span class="badge text-bg-primary mb-3">
+            <%= e.category %>
+          </span>
+
+          <h3 class="h5 fw-bold">
+            <%= e.title %>
+          </h3>
+
+          <p class="text-muted small">
+            <%= date(e.date) %>
+          </p>
+
+          <p>
+            <%= e.description.slice(0,135) %>...
+          </p>
+
+          <div class="small text-muted mb-3">
+            <%= e.venue ? e.venue.name : "Venue TBA" %>
+          </div>
+
+          <a class="btn btn-outline-primary"
+             href="/events/<%= e._id %>">
+            Event details
+          </a>
+
+        </div>
+      </div>
+    </div>
+  <% }) %>
+
+</div>
+
+<%- include("partials/foot") %>
